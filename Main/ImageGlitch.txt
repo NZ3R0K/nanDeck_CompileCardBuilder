@@ -2,8 +2,6 @@ UNIT=INCH
 DPI=300
 [card-w]=2.5
 [card-h]=3.5
-[path] = [param1]
-;[path] = "Gen\"
 
 CARDSIZE=[card-w],[card-h]
 
@@ -35,9 +33,14 @@ inputnumber=gltichOffset20,"Glitch Offset 20 %","0",-100,100
 [glitch-w]=[card-w]/[glitch-count]
 [image-zoom]=120%
 
+[ind]=index("\",[SourceImage],-1)
+[Root]=STRINGSUB([SourceImage], 0, [ind])
+
+inputnumber=imgXZoom,"Image X Zoom %","120",0,200
+inputnumber=imgYZoom,"Image Y Zoom %","120",0,200
 
 IMAGE=0,[SourceImage],0%,0%,100%,100%,90
-IMAGE=1,[SourceImage],-[imgXOffset]%,-[imgYOffset]%,[image-zoom],[image-zoom],90
+IMAGE=1,[SourceImage],-[imgXOffset]%,-[imgYOffset]%,[imgXZoom]%,[imgYZoom]%,90
 
 <fa1>=0,0,[glitch-w],[card-h]
 
@@ -86,8 +89,8 @@ IMAGE=2,"frame18.jpg",(17*[slice-offset])-[imgXOffset]%,-[imgYOffset]%+[gltichOf
 IMAGE=2,"frame19.jpg",(18*[slice-offset])-[imgXOffset]%,-[imgYOffset]%+[gltichOffset19]%,[slice-offset],[image-zoom],0
 IMAGE=2,"frame20.jpg",(19*[slice-offset])-[imgXOffset]%,-[imgYOffset]%+[gltichOffset20]%,[slice-offset],[image-zoom],0
 
-save=1,CONCAT1([path],"\Assets\\Generated\\ProtocolBackImage.jpg"),0,0,100%,100%
-save=2,CONCAT1([path],"\Assets\\Generated\\ProtocolFrontImage.jpg"),0,0,100%,100%
+save=1,CONCAT1([Root],"\Generated\\ProtocolBackImage.jpg"),0,0,100%,100%
+save=2,CONCAT1([Root],"\Generated\\ProtocolFrontImage.jpg"),0,0,100%,100%
 
 ;N[elements] = alpha|beta|gamma|delta
 ;log=,,"{[elements]?0}"
