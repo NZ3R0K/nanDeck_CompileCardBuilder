@@ -18,14 +18,20 @@ UNIT = INCH
 
 
 
-;Only insert the root folder path, the subfolders will be made automatically.
-[TTSFileSaveLocation] = "C:\\Users\\NZ3R0\\OneDrive\\Pictures\\Compile\\TTS\\"
-[IndividualCardSaveLocation] = "C:\\Users\\NZ3R0\\OneDrive\\Pictures\\Compile\\Cards\\"
-[CommandSheetSaveLocaiton] = "C:\\Users\\NZ3R0\\OneDrive\\Pictures\\Compile\\Sheets\\"
-[ProtocolSheetSaveLocation] = "C:\\Users\\NZ3R0\\OneDrive\\Pictures\\Compile\\Sheets\\"
 
-;This folder contains the default / universal image components for Compile
-[CompileImageDefaultsLocation] = "C:\\Users\\NZ3R0\\OneDrive\\Pictures\\nanDeck\\Compile\\"
+
+
+;Only insert the root folder path, the subfolders will be made automatically.
+;Example Path
+;C:\\Users\\USER\\OneDrive\\Documents\\CompileDeckBuilder\\
+
+[TTSFileSaveLocation] = "Generated\\TTS\\"
+[IndividualCardSaveLocation] = "Generated\\Cards\\"
+[CommandSheetSaveLocaiton] = "Generated\\Sheets\\"
+[ProtocolSheetSaveLocation] = "Generated\\Sheets\\"
+
+;This folder contains the default / universal image components for generate the custom cards.
+[CompileImageDefaultsLocation] = "Universal Assets\\"
 
 
 
@@ -57,8 +63,8 @@ UNIT = INCH
 [card-h]=3.5
 CARDSIZE=[card-w],[card-h]
 
-INPUTNUMBER = TextBackgroundAlpha, “Transparency for command background. %”,75,0,100
-INPUTTEXT = Path, “Select the xlsx file.”,, F
+INPUTNUMBER = TextBackgroundAlpha,  Transparency for command background. % ,75,0,100
+INPUTTEXT = Path,  Select the xlsx file. ,, F
 INPUTCHOICE = BuildTTSSheet, "Generate TTS sheets?","False","True|False"
 INPUTCHOICE = SeperateCommandSheets, "Generate command sheets?", "False", "True|False"
 INPUTCHOICE = IndividualCards,  "Generate individual cards?", "False", "True|False"
@@ -143,13 +149,13 @@ LINK = JOIN([Path], "!Command")
 ;Creates cards to be used in TTS or printed at high fidelity
 IF = [LowInk] = "False"
 ;Background Image(locked)
-IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({§/6},0,UP)}},1,"\\Assets\\Generated\\commandCard",1,{§-{{ROUND({§/6},0,UP)-1}*6}},1,".jpg",1),0,0,[card-w],[card-h]
+IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({ /6},0,UP)}},1,"\\Assets\\Generated\\commandCard",1,{ -{{ROUND({ /6},0,UP)-1}*6}},1,".jpg",1),0,0,[card-w],[card-h]
 ;DefaultTextBackground
 IMAGE=1-[CommandCards],[CommandCardTextBackground],0%,0%,100%,100%,0,N,[TextBackgroundAlpha]%
 ;Lines
 IMAGE=1-[CommandCards],[CommandCardLines],0%,0%,100%,100%,0,NAT
 ;Icon   79.5%,5.0%,14%,10%
-IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({§/6},0,UP)}},1,"\\Assets\\icon.png",1),79.75%,5.15%,14%,10%
+IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({ /6},0,UP)}},1,"\\Assets\\icon.png",1),79.75%,5.15%,14%,10%
 
 ;PersistentTextBackground
 if = _NOT_ ([PERSISTENT TEXT] = )
@@ -195,34 +201,34 @@ HTMLTEXT=1-[CommandCards],[VALUE],{23372/571}%,7.5%,{10658/571}%,{5257/400}%,#FF
 HTMLTEXT=1-[CommandCards],[PACK],91.75%,46.471%,3.75%,18.25%,#FFFFFF,-90,EFB,100,PackTagFont
 
 if= _NOT_ ([CARD NAME] = )
-HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({§/6},0,UP)}},7.33%,4.5%,30%,6.19%,#FFFFFF,0,EFB,100,ProtocolNameFont,ProtocolNameFont
+HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({ /6},0,UP)}},7.33%,4.5%,30%,6.19%,#FFFFFF,0,EFB,100,ProtocolNameFont,ProtocolNameFont
 HTMLTEXT=1-[CommandCards],[CARD NAME],8%,8.75%,25.732%,3.24%,#FFFFFF,0,BE,100,CardNameFont
 else
-HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({§/6},0,UP)}},7.333%,5.25%,30%,6.19%,#FFFFFF,0,EFB,100,ProtocolNameFont,ProtocolNameFont
+HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({ /6},0,UP)}},7.333%,5.25%,30%,6.19%,#FFFFFF,0,EFB,100,ProtocolNameFont,ProtocolNameFont
 endif
 
 ;If there is an emphasis, use different concat
 if = _NOT_ ([PERSISTENT EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], !emphasis!, "{PEREMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"!emphasis! {PERSTEXT?§}",4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], !emphasis!, "{PEREMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"!emphasis! {PERSTEXT? }",4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{PERSTEXT?§},4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{PERSTEXT? },4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([IMMEDIATE EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], !emphasis!, "{IMMEMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"!emphasis! {IMMTEXT?§}",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], !emphasis!, "{IMMEMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"!emphasis! {IMMTEXT? }",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{IMMTEXT?§},4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{IMMTEXT? },4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([AUXILIARY EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], !emphasis!, "{AUXEMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"!emphasis! {AUXTEXT?§}",4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], !emphasis!, "{AUXEMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"!emphasis! {AUXTEXT? }",4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{AUXTEXT?§},5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{AUXTEXT? },5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;CreatorTag
@@ -242,7 +248,7 @@ IMAGE=1-[CommandCards],[CommandCardTextBackgroundB],0%,0%,100%,100%,0,N
 ;Lines
 IMAGE=1-[CommandCards],[CommandCardLinesB],0%,0%,100%,100%,0
 ;Icon   79.5%,5.0%,14%,10%
-IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({§/6},0,UP)}},1,"\\Assets\\icon.png",1),79.75%,5.15%,14%,10%
+IMAGE=1-[CommandCards],CONCAT([Root],1,{PROTOCOL NAME?{ROUND({ /6},0,UP)}},1,"\\Assets\\icon.png",1),79.75%,5.15%,14%,10%
 
 ;ProtocolNameFont
 HTMLFONT=ProtocolNameFont,HACKED,20,,#000000,LEFT
@@ -273,34 +279,34 @@ HTMLTEXT=1-[CommandCards],[VALUE],{23372/571}%,7.5%,{10658/571}%,{5257/400}%,#00
 HTMLTEXT=1-[CommandCards],[PACK],91.75%,46.471%,3.75%,18.25%,#000000,-90,EFB,100,PackTagFont
 
 if= _NOT_ ([CARD NAME] = )
-HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({§/6},0,UP)}},7.33%,4.5%,30%,6.19%,#000000,0,EFB,100,ProtocolNameFont,ProtocolNameFont
+HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({ /6},0,UP)}},7.33%,4.5%,30%,6.19%,#000000,0,EFB,100,ProtocolNameFont,ProtocolNameFont
 HTMLTEXT=1-[CommandCards],[CARD NAME],8%,8.75%,25.732%,3.24%,#000000,0,BE,100,CardNameFont
 else
-HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({§/6},0,UP)}},7.333%,5.25%,30%,6.19%,#000000,0,EFB,100,ProtocolNameFont,ProtocolNameFont
+HTMLTEXT=1-[CommandCards],{PROTOCOL NAME?{ROUND({ /6},0,UP)}},7.333%,5.25%,30%,6.19%,#000000,0,EFB,100,ProtocolNameFont,ProtocolNameFont
 endif
 
 ;If there is an emphasis, use different concat
 if = _NOT_ ([PERSISTENT EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], (emphasis), "{PEREMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"(emphasis) {PERSTEXT?§}",4.5%,{18209/800}%,88%,{3459/160}%,#000000,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], (emphasis), "{PEREMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"(emphasis) {PERSTEXT? }",4.5%,{18209/800}%,88%,{3459/160}%,#000000,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{PERSTEXT?§},4.5%,{18209/800}%,88%,{3459/160}%,#000000,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{PERSTEXT? },4.5%,{18209/800}%,88%,{3459/160}%,#000000,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([IMMEDIATE EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], (emphasis), "{IMMEMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"(emphasis) {IMMTEXT?§}",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#000000,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], (emphasis), "{IMMEMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"(emphasis) {IMMTEXT? }",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#000000,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{IMMTEXT?§},4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#000000,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{IMMTEXT? },4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#000000,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([AUXILIARY EMPHASIS] = )
-HTMLKEY = 1-[CommandCards], (emphasis), "{AUXEMPH?§}:", AbilityFontEmphasis
-HTMLTEXT=1-[CommandCards],"(emphasis) {AUXTEXT?§}",4.5%,72%,85%,24%,#000000,0,BE,100,AbilityFont
+HTMLKEY = 1-[CommandCards], (emphasis), "{AUXEMPH? }:", AbilityFontEmphasis
+HTMLTEXT=1-[CommandCards],"(emphasis) {AUXTEXT? }",4.5%,72%,85%,24%,#000000,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-[CommandCards],{AUXTEXT?§},5%,72%,85%,24%,#000000,0,BE,100,AbilityFont
+HTMLTEXT=1-[CommandCards],{AUXTEXT? },5%,72%,85%,24%,#000000,0,BE,100,AbilityFont
 endif
 
 ;CreatorTag
@@ -321,13 +327,13 @@ ENDIF
 
 IF = [LowInk] = "False"
 ;ProtocolCard Loading Background(locked)
-IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{§-[CommandCards]}},1,"\\Assets\\Generated\\ProtocolFrontImage.jpg", 1),0,0,[card-w],[card-h]
+IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{ -[CommandCards]}},1,"\\Assets\\Generated\\ProtocolFrontImage.jpg", 1),0,0,[card-w],[card-h]
 ;Lines(snap)(size)
 IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},[ProtocolCardLoadingLines],0%,0%,100%,100%
 ;Image(snap)(size)
 IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},[ProtocolCardLoadingTextBackground],0%,0%,100%,100%,0,,[TextBackgroundAlpha]%
 ;Icon
-IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{§-[CommandCards]}},1,"\\Assets\\icon.png",1),79%,84.55%,{7993/571}%,10%,90
+IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{ -[CommandCards]}},1,"\\Assets\\icon.png",1),79%,84.55%,{7993/571}%,10%,90
 
 ;PCProtocolFont
 HTMLFONT=PCProtocolFont,HACKED,38,,#FFFFFF,CENTER,0,0,0.25,#000000
@@ -344,13 +350,13 @@ HTMLMARGINS=PCProtocolFont,0,0,0,0,CENTER,0
 HTMLMARGINS=PCActionFont,0,0,0,0,CENTER
 
 ;ProtocolText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},{PROTOCOL NAME?{§-[CommandCards]}},{22763/571}%,{259/80}%,22%,96%,#FFFFFF,90,EB,100,PCProtocolFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},{PROTOCOL NAME?{ -[CommandCards]}},{22763/571}%,{259/80}%,22%,96%,#FFFFFF,90,EB,100,PCProtocolFont
 ;LoadingText
 HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"Loading...",{17282/571}%,{31009/800}%,{4415/571}%,{20419/800}%,#FFFFFF,90,EB,100,PCLoadingFont
 ;DescriptionText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"> {PROTOCOL DESCRIPTION?{§-[CommandCards]}}",87.5%,{3123/400}%,6%,70%,#FFFFFF,90,EB,100,PCDescriptionFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"> {PROTOCOL DESCRIPTION?{ -[CommandCards]}}",87.5%,{3123/400}%,6%,70%,#FFFFFF,90,EB,100,PCDescriptionFont
 ;PCActionText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"{PROTOCOL ACTIONS?{§-[CommandCards]}}",8.5%,6.5%,8%,86%,#FFFFFF,90,EB,100,PCActionFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"{PROTOCOL ACTIONS?{ -[CommandCards]}}",8.5%,6.5%,8%,86%,#FFFFFF,90,EB,100,PCActionFont
 
 ELSE
 RECTANGLE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},0,0,100%,100%,#000000
@@ -361,7 +367,7 @@ IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},[ProtocolCardLoading
 ;Image(snap)(size)
 IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},[ProtocolCardLoadingTextBackgroundB],0%,0%,100%,100%,0
 ;Icon
-IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{§-[CommandCards]}},1,"\\Assets\\icon.png",1),79%,84.55%,{7993/571}%,10%,90
+IMAGE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},CONCAT([Root],1,{PROTOCOL NAME?{ -[CommandCards]}},1,"\\Assets\\icon.png",1),79%,84.55%,{7993/571}%,10%,90
 
 ;PCProtocolFont
 HTMLFONT=PCProtocolFont,HACKED,38,,#000000,CENTER
@@ -378,13 +384,13 @@ HTMLMARGINS=PCProtocolFont,0,0,0,0,CENTER,0
 HTMLMARGINS=PCActionFont,0,0,0,0,CENTER
 
 ;ProtocolText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},{PROTOCOL NAME?{§-[CommandCards]}},{22763/571}%,{259/80}%,22%,96%,#000000,90,EB,100,PCProtocolFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},{PROTOCOL NAME?{ -[CommandCards]}},{22763/571}%,{259/80}%,22%,96%,#000000,90,EB,100,PCProtocolFont
 ;LoadingText
 HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"Loading...",{17282/571}%,{31009/800}%,{4415/571}%,{20419/800}%,#000000,90,EB,100,PCLoadingFont
 ;DescriptionText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"> {PROTOCOL DESCRIPTION?{§-[CommandCards]}}",87.5%,{3123/400}%,6%,70%,#000000,90,EB,100,PCDescriptionFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"> {PROTOCOL DESCRIPTION?{ -[CommandCards]}}",87.5%,{3123/400}%,6%,70%,#000000,90,EB,100,PCDescriptionFont
 ;PCActionText(size)
-HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"{PROTOCOL ACTIONS?{§-[CommandCards]}}",8.5%,6.5%,8%,86%,#000000,90,EB,100,PCActionFont
+HTMLTEXT={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},"{PROTOCOL ACTIONS?{ -[CommandCards]}}",8.5%,6.5%,8%,86%,#000000,90,EB,100,PCActionFont
 
 ENDIF
 
@@ -398,13 +404,13 @@ ENDIF
 
 IF = [LowInk] = "False"
 ;ProtocolCard Compiled Background(locked)
-IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{§-{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\Generated\\ProtocolBackImage.jpg",1),0,0,[card-w],[card-h]
+IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{ -{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\Generated\\ProtocolBackImage.jpg",1),0,0,[card-w],[card-h]
 ;TextBackground(snap)(size)
 IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},[ProtocolCardCompiledTextBackground],0%,0%,100%,100%,0,,[TextBackgroundAlpha]%
 ;Lines(snap)(size)
 IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},[ProtocolCardCompiledLines],0%,0%,100%,100%
 ;Icon(size)
-IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{§-{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\icon.png",1),80.25%,84.75%,{7993/571}%,10%,90
+IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{ -{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\icon.png",1),80.25%,84.75%,{7993/571}%,10%,90
 
 ;ProtocolCompiledProtocolFont(snap)(size)
 HTMLFONT=ProtocolCompiledProtocolFont,HACKED,24,W,#FFFFFF,CENTER
@@ -417,7 +423,7 @@ HTMLMARGINS=CompiledFont,0,0,0,0,CENTER
 ;CompiledText(snap)(size)
 HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},"Compiled",6%,64%,8%,30%,#FFFFFF,90,EB,100,CompiledFont
 ;ProtocolText(size)
-HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},{PROTOCOL NAME?{§-[CommandCards]}},{3806/571}%,{2933/400}%,14%,52%,#FFFFFF,90,EB,100,ProtocolCompiledProtocolFont
+HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},{PROTOCOL NAME?{ -[CommandCards]}},{3806/571}%,{2933/400}%,14%,52%,#FFFFFF,90,EB,100,ProtocolCompiledProtocolFont
 
 
 ELSE
@@ -430,7 +436,7 @@ IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},[P
 ;Lines(snap)(size)
 IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},[ProtocolCardCompiledLinesB],0%,0%,100%,100%
 ;Icon(size)
-IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{§-{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\icon.png",1),80.25%,84.75%,{7993/571}%,10%,90
+IMAGE={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},CONCAT([Root],1,{PROTOCOL NAME?{ -{[CommandCards]+{[ProtocolCards]/2}}}},1,"\\Assets\\icon.png",1),80.25%,84.75%,{7993/571}%,10%,90
 
 ;ProtocolCompiledProtocolFont(snap)(size)
 HTMLFONT=ProtocolCompiledProtocolFont,HACKED,24,W,#000000,CENTER
@@ -443,7 +449,7 @@ HTMLMARGINS=CompiledFont,0,0,0,0,CENTER
 ;CompiledText(snap)(size)
 HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},"Compiled",6%,64%,8%,30%,#000000,90,EB,100,CompiledFont
 ;ProtocolText(size)
-HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},{PROTOCOL NAME?{§-[CommandCards]}},{3806/571}%,{2933/400}%,14%,52%,#000000,90,EB,100,ProtocolCompiledProtocolFont
+HTMLTEXT={[CommandCards]+{[ProtocolCards]/2}+1}-{[CommandCards]+[ProtocolCards]},{PROTOCOL NAME?{ -[CommandCards]}},{3806/571}%,{2933/400}%,14%,52%,#000000,90,EB,100,ProtocolCompiledProtocolFont
 
 ENDIF
 
@@ -470,7 +476,7 @@ ENDIF
 
 IF = {BuildTTSSheet?1} = "True"
     IF = {[ProtocolCards]/2} > 7
-        ;DISPLAY=JOIN([TTSFileSaveLocation],[PACK],"\\CommandSheet§.png"),,,6x7,1-[CommandCards]
+        ;DISPLAY=JOIN([TTSFileSaveLocation],[PACK],"\\CommandSheet .png"),,,6x7,1-[CommandCards]
     ELSE
         ;DISPLAY=JOIN([TTSFileSaveLocation],[PACK],"\\CommandSheet.png"),,,[TTSSheetSize],1-[CommandCards]
     endif
@@ -496,10 +502,10 @@ DISPLAY%{DoSeperateCommandSheets?1},(i),1,[Protocols]=JOIN({CommandSheetSaveLoca
 
 ;Create images for each card generated
 IF ={IndividualCards?1} = "True"
-    SAVE=1-[CommandCards],JOIN([IndividualCardSaveLocation],{PROTOCOL NAME?{ROUND(§/6,0,UP)}},"\\",[VALUE],".png")
+    SAVE=1-[CommandCards],JOIN([IndividualCardSaveLocation],{PROTOCOL NAME?{ROUND( /6,0,UP)}},"\\",[VALUE],".png")
 
-    SAVE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},JOIN([IndividualCardSaveLocation],{PROTOCOL NAME?§},"\\A.png")
-    SAVE={[CommandCards]+[ProtocolCards]/2+1}-{[CommandCards]+[ProtocolCards]},JOIN([IndividualCardSaveLocation],{PROTOCOL NAME?§},"\\B.png")
+    SAVE={[CommandCards]+1}-{[CommandCards]+[ProtocolCards]/2},JOIN([IndividualCardSaveLocation],{PROTOCOL NAME? },"\\A.png")
+    SAVE={[CommandCards]+[ProtocolCards]/2+1}-{[CommandCards]+[ProtocolCards]},JOIN([IndividualCardSaveLocation],{PROTOCOL NAME? },"\\B.png")
 ENDIF
 
 [DoSeperateProtocolSheets] = [SeperateProtocolSheets] = True
