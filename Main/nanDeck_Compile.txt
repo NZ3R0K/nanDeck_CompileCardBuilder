@@ -1,7 +1,7 @@
 UNIT = INCH
 ;Compile card builder
 ;by NZ3R0K
-;Last Updated August 27, 2025
+;Last Updated December 15, 2025
 
 ;USEAGE
 ;This program is designed to take in a .xlsx containing information about the Protocol and its Command Cards.
