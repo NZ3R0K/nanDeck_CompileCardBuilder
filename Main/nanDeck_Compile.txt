@@ -1,6 +1,7 @@
 UNIT = INCH
 ;Compile card builder
 ;by NZ3R0K
+;nanDeck Version: 1.28.3
 ;Last Updated December 15, 2025
 
 ;USEAGE
@@ -64,8 +65,8 @@ UNIT = INCH
 [card-h]=3.5
 CARDSIZE=[card-w],[card-h]
 
-INPUTNUMBER = TextBackgroundAlpha, ìTransparency for command background. %î,75,0,100
-INPUTTEXT = Path, ìSelect the xlsx file.î,, F
+INPUTNUMBER = TextBackgroundAlpha, ‚ÄúTransparency for command background. %‚Äù,75,0,100
+INPUTTEXT = Path, ‚ÄúSelect the xlsx file.‚Äù,, F
 INPUTCHOICE = SliceImageForBackground, "Generate command background?","False","True|False"
 INPUTCHOICE = OneImageCards, "Generate protocol background","False","True|False"
 INPUTCHOICE = BuildTTSSheet, "Generate TTS Sheet?","False","True|False"
@@ -128,13 +129,13 @@ CARDS={[commandcards-x]*[commandcards-y]}+3
 
 
 ;Generate background images
-IF = ([SliceImageForBackground] = "True") _AND_ ({ß} = 1)
+IF = ([SliceImageForBackground] = "True") _AND_ ({¬ß} = 1)
 log=,,"Beginning Image Slice..."
 x=IMAGECREATE("ImageSlice.txt", "commandCard", [Root], [commandcards-x], [commandcards-y])
 log=,,"Slice Complete"
 ENDIF
 
-IF = ([OneImageCards] = "True") _AND_ ({ß} = 1)
+IF = ([OneImageCards] = "True") _AND_ ({¬ß} = 1)
 log=,,"Beginning Image Glitch..."
 x=IMAGECREATE("ImageGlitch.txt", [Root])
 
@@ -146,7 +147,7 @@ log=,,"Glitch Complete"
 ENDIF
 
 ;Background Image(locked)
-IMAGE=1-{[commandcards-x]*[commandcards-y]},"[Root]\Assets\\Generated\\commandCard{ß}.jpg",0,0,[card-w],[card-h]
+IMAGE=1-{[commandcards-x]*[commandcards-y]},"[Root]\Assets\\Generated\\commandCard{¬ß}.jpg",0,0,[card-w],[card-h]
 ;DefaultTextBackground
 IMAGE=1-6,[CommandCardTextBackground],0%,0%,100%,100%,0,N,[TextBackgroundAlpha]%
 ;Icon
@@ -215,26 +216,26 @@ endif
 
 ;If there is an emphasis, use different concat
 if = _NOT_ ([PERSISTENT EMPHASIS] = )
-HTMLKEY = 1-6, (emphasis), "{PEREMPH?ß}:", AbilityFontEmphasis
-HTMLTEXT=1-6,"(emphasis) {PERSTEXT?ß}",4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-6, (emphasis), "{PEREMPH?¬ß}:", AbilityFontEmphasis
+HTMLTEXT=1-6,"(emphasis) {PERSTEXT?¬ß}",4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-6,{PERSTEXT?ß},4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-6,{PERSTEXT?¬ß},4.5%,{18209/800}%,88%,{3459/160}%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([IMMEDIATE EMPHASIS] = )
-HTMLKEY = 1-6, (emphasis), "{IMMEMPH?ß}:", AbilityFontEmphasis
-HTMLTEXT=1-6,"(emphasis) {IMMTEXT?ß}",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-6, (emphasis), "{IMMEMPH?¬ß}:", AbilityFontEmphasis
+HTMLTEXT=1-6,"(emphasis) {IMMTEXT?¬ß}",4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-6,{IMMTEXT?ß},4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-6,{IMMTEXT?¬ß},4.5%,{38933/800}%,{48116/571}%,{8533/400}%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;If there is an emphasis, use different concat
 if =_NOT_ ([AUXILIARY EMPHASIS] = )
-HTMLKEY = 1-6, (emphasis), "{AUXEMPH?ß}:", AbilityFontEmphasis
-HTMLTEXT=1-6,"(emphasis) {AUXTEXT?ß}",4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
+HTMLKEY = 1-6, (emphasis), "{AUXEMPH?¬ß}:", AbilityFontEmphasis
+HTMLTEXT=1-6,"(emphasis) {AUXTEXT?¬ß}",4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
 else
-HTMLTEXT=1-6,{AUXTEXT?ß},4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
+HTMLTEXT=1-6,{AUXTEXT?¬ß},4.5%,72%,85%,24%,#FFFFFF,0,BE,100,AbilityFont
 endif
 
 ;CreatorTag
