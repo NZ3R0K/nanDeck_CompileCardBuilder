@@ -47,7 +47,7 @@ Contains the 2 output file types.
 ## How do I use the script?
 ### Setup
 1. Download [nanDeck](https://nandeck.com/old-versions) if you have not already. It is free to download and use.
-2. Move the fonts from the Main//Fonts folder to where nanDeck.exe is installed. Ensure each font file is in the same folder as nanDeck.exe and not in a subfolder so that nanDeck can find the files and import them.
+2. Move the fonts from the Main//Fonts folder to where nanDeck was installed (in AppData by default). Ensure each font file is in the same folder as nanDeck.exe and not in a subfolder so that nanDeck can find the files and import them.
 <img width="779" height="331" alt="Screenshot 2025-08-30 151810" src="https://github.com/user-attachments/assets/b1839ebc-1f4d-46b2-8103-2b3450d236ee" />
 
 3. Fill out the **Compile_HomebrewData_Template.xlsx** [spreadsheet](Main//Compile_HomebrewData_Template.xlsx) with information about the cards and protocol. Click [here](#Spreadsheet) for information about the spreadsheet.
