@@ -47,9 +47,7 @@ Contains the 2 output file types.
 ## How do I use the script?
 ### Setup
 1. Download [nanDeck](https://nandeck.com/old-versions) if you have not already. It is free to download and use.
-2. Move the fonts from the Main//Fonts folder to where nanDeck was installed (in AppData by default). Ensure each font file is in the same folder as nanDeck.exe and not in a subfolder so that nanDeck can find the files and import them.
-<img width="779" height="331" alt="Screenshot 2025-08-30 151810" src="https://github.com/user-attachments/assets/b1839ebc-1f4d-46b2-8103-2b3450d236ee" />
-
+2. Move the fonts from the Main//Fonts folder to where nanDeck was installed (in AppData by default). This will allow nanDeck to import the font files on startup. When starting nanDeck you should see confirmation through brief popup windows for the imporation as well as in the LOG in the bottom center of the nanDeck application window.
 3. Fill out the **Compile_HomebrewData_Template.xlsx** [spreadsheet](Main//Compile_HomebrewData_Template.xlsx) with information about the cards and protocol. Click [here](#Spreadsheet) for information about the spreadsheet.
 4. Once the spreadsheet is filled out, place it at the root of the protocols folder. This file will be used to source the images used for the icon and background. Examples in the Main//NEW_PROTOCOL// folder.
 5. Source images. The program can slice images for each of the 6 command cards for a quick and simple generation, or you can cut the images manually in a 3rd party software such as Gimp or Photoshop and insert them into the proper folder.
