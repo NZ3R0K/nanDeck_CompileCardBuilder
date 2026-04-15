@@ -59,6 +59,9 @@ Contains the 2 output file types.
   ![Background](Main/NEW_PROTOCOL/Assets/Background.jpg)
 
 
+###NOTE
+Before generating your cards, make sure your nanDeck version is the same as what is listed at the top of the script (IE: nanDeck Version: X.X.X). Version mismatches will cause errors and make you very sad.
+
 ### Card Creation
 1. Press the "Open Deck" button on the left-side menu near the top.
 <img width="1920" height="1080" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/225ecb48-ef00-4108-83ce-f4ad55d114fc" />
